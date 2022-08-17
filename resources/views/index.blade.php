@@ -33,8 +33,8 @@
                             <div class="form-group">
                                 <select id="my-select" class="form-control" name="tahun">
                                     <option value="">Pilih Tahun</option>
-                                    <option value="2021" selected="">2021</option>
-                                    <option value="2022">2022</option>
+                                    <option value="2021" {{ Request::has('tahun') ? request('tahun') == '2021' ? 'selected' : '' : '' }}>2021</option>
+                                    <option value="2022" {{ Request::has('tahun') ? request('tahun') == '2022' ? 'selected' : '' : '' }}>2022</option>
                                 </select>
                             </div>
                         </div>
@@ -82,102 +82,342 @@
                                 <tr>
                                     <td class="table-secondary" colspan="14"><b>Makanan</b></td>
                                 </tr>
+                                @php
+                                    $total = [];
+                                @endphp
                                 @foreach ($menu as $me)
                                     @if ($me->kategori == 'makanan')
                                         <tr>
                                             <td>{{ $me->menu }}</td>
                                             <td style="text-align: right;">
                                                 @php
-                                                    $totalJanuari = 0;
+                                                    $total[0] = 0;
                                                 @endphp
                                                 @foreach ($transaksi as $trans)
                                                     @if (substr($trans->tanggal, 5, 2) == '01' && $trans->menu == $me->menu )
                                                         @php
-                                                            $totalJanuari += $trans->total;
+                                                            $total[0] += $trans->total;
                                                         @endphp
                                                     @endif
                                                 @endforeach
-                                                {{ $totalJanuari }}
+                                                {{ currency_IDR($total[0]) }}
                                             </td>
                                             <td style="text-align: right;">
                                                 @php
-                                                    $totalFebruari = 0;
+                                                    $total[1] = 0;
                                                 @endphp
                                                 @foreach ($transaksi as $trans)
                                                     @if (substr($trans->tanggal, 5, 2) == '02' && $trans->menu == $me->menu )
                                                         @php
-                                                            $totalFebruari += $trans->total;
+                                                            $total[1] += $trans->total;
                                                         @endphp
                                                     @endif
                                                 @endforeach
-                                                {{ $totalFebruari += $trans->total }}
+                                                {{ currency_IDR($total[1]) }}
                                             </td>
                                             <td style="text-align: right;">
                                                 @php
-                                                    $totalMaret = 0;
+                                                    $total[2] = 0;
                                                 @endphp
                                                 @foreach ($transaksi as $trans)
                                                     @if (substr($trans->tanggal, 5, 2) == '03' && $trans->menu == $me->menu )
                                                         @php
-                                                            $totalMaret += $trans->total;
+                                                            $total[2] += $trans->total;
                                                         @endphp
                                                     @endif
                                                 @endforeach
-                                                {{ $totalMaret += $trans->total }}
+                                                {{ currency_IDR($total[2]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[3] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '04' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[3] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[3]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[4] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '05' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[4] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[4]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[5] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '06' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[5] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[5]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[6] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '07' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[6] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[6]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[7] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '08' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[7] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[7]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[8] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '09' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[8] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[8]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[9] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '10' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[9] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[9]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[10] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '11' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[10] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[10]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[11] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '12' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[11] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[11]) }}
                                             </td>
 
-                                            <td style="text-align: right;"><b>{{ $totalJanuari + $totalFebruari + $totalMaret }}</b></td>
+                                            <td style="text-align: right;"><b>{{ currency_IDR( array_sum($total)) }}</b></td>
                                         </tr>
                                     @endif
                                 @endforeach
                                 <tr>
                                     <td class="table-secondary" colspan="14"><b>Minuman</b></td>
                                 </tr>
+                                @php
+                                    $total = [];
+                                @endphp
                                 @foreach ($menu as $me)
                                     @if ($me->kategori == 'minuman')
                                         <tr>
                                             <td>{{ $me->menu }}</td>
                                             <td style="text-align: right;">
                                                 @php
-                                                    $totalJanuari = 0;
+                                                    $total[0] = 0;
                                                 @endphp
                                                 @foreach ($transaksi as $trans)
                                                     @if (substr($trans->tanggal, 5, 2) == '01' && $trans->menu == $me->menu )
                                                         @php
-                                                            $totalJanuari += $trans->total;
+                                                            $total[0] += $trans->total;
                                                         @endphp
                                                     @endif
                                                 @endforeach
-                                                {{ $totalJanuari }}
+                                                {{ currency_IDR($total[0]) }}
                                             </td>
                                             <td style="text-align: right;">
                                                 @php
-                                                    $totalFebruari = 0;
+                                                    $total[1] = 0;
                                                 @endphp
                                                 @foreach ($transaksi as $trans)
                                                     @if (substr($trans->tanggal, 5, 2) == '02' && $trans->menu == $me->menu )
                                                         @php
-                                                            $totalFebruari += $trans->total;
+                                                            $total[1] += $trans->total;
                                                         @endphp
                                                     @endif
                                                 @endforeach
-                                                {{ $totalFebruari += $trans->total }}
+                                                {{ currency_IDR($total[1]) }}
                                             </td>
                                             <td style="text-align: right;">
                                                 @php
-                                                    $totalMaret = 0;
+                                                    $total[2] = 0;
                                                 @endphp
                                                 @foreach ($transaksi as $trans)
                                                     @if (substr($trans->tanggal, 5, 2) == '03' && $trans->menu == $me->menu )
                                                         @php
-                                                            $totalMaret += $trans->total;
+                                                            $total[2] += $trans->total;
                                                         @endphp
                                                     @endif
                                                 @endforeach
-                                                {{ $totalMaret += $trans->total }}
+                                                {{ currency_IDR($total[2]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[3] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '04' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[3] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[3]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[4] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '05' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[4] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[4]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[5] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '06' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[5] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[5]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[6] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '07' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[6] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[6]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[7] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '08' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[7] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[7]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[8] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '09' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[8] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[8]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[9] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '10' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[9] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[9]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[10] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '11' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[10] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[10]) }}
+                                            </td>
+                                            <td style="text-align: right;">
+                                                @php
+                                                    $total[11] = 0;
+                                                @endphp
+                                                @foreach ($transaksi as $trans)
+                                                    @if (substr($trans->tanggal, 5, 2) == '12' && $trans->menu == $me->menu )
+                                                        @php
+                                                            $total[11] += $trans->total;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ currency_IDR($total[11]) }}
                                             </td>
 
-                                            <td style="text-align: right;"><b>{{ $totalJanuari + $totalFebruari + $totalMaret }}</b></td>
+                                            <td style="text-align: right;"><b>{{ currency_IDR( array_sum($total)) }}</b></td>
                                         </tr>
                                     @endif
                                 @endforeach
